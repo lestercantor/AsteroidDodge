@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv5u7xqu07dit"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_fffgk"]
+[ext_resource type="Texture2D" uid="uid://cpk1jidmldncc" path="res://assets/sprites/ship128.png" id="2_42xdp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x80w5"]
+bg_color = Color(0.266057, 0.36899, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72eud"]
+bg_color = Color(0.174644, 0.184074, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pqcp"]
+bg_color = Color(0.0524721, 0.605226, 0.916423, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fffgk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.673
+anchor_bottom = 0.673
+offset_left = -0.2
+offset_right = 184.8
+grow_vertical = 0
+text = "Press 'A' or Left Arrow to move left"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.673
+anchor_right = 1.0
+anchor_bottom = 0.673
+offset_left = -192.0
+offset_top = -48.8
+offset_bottom = 0.200012
+grow_horizontal = 0
+grow_vertical = 0
+text = "Press 'D' or Right Arrow to move Right"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -15.5
+offset_right = 48.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_x80w5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_72eud")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8pqcp")
+text = "Start Game
+"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(224, 555)
+texture = ExtResource("2_42xdp")
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

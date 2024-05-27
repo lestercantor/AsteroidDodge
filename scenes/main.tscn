@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvroygpkwwrtl"]
+
+[ext_resource type="PackedScene" uid="uid://ds3ospufx886f" path="res://scenes/player.tscn" id="1_8cvd5"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_cldtt"]
+[ext_resource type="PackedScene" uid="uid://b2ojj7vmebyqg" path="res://scenes/asteroid.tscn" id="2_6ktva"]
+[ext_resource type="PackedScene" uid="uid://by5hhc0rrqxm" path="res://scenes/parallax_background.tscn" id="3_asoln"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_cldtt")
+asteroid_scene = ExtResource("2_6ktva")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("3_asoln")]
+
+[node name="Player" parent="." instance=ExtResource("1_8cvd5")]
+position = Vector2(224, 555)
+
+[node name="AsteroidSpawner" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[node name="ScoreText" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 81.0
+offset_right = 104.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 18
+text = "Score: 0"
+
+[node name="GameOver" type="Node2D" parent="."]
+visible = false
+position = Vector2(225, 300)
+
+[node name="RestartButton" type="Button" parent="GameOver"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.5
+offset_top = -22.0
+offset_right = 65.5
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="HighScore" type="Label" parent="GameOver"]
+offset_left = -68.0
+offset_top = 23.0
+offset_right = 69.0
+offset_bottom = 82.0
+text = "High Score:
+x"
+horizontal_alignment = 1
+
+[connection signal="PlayerDeath" from="Player" to="." method="_on_player_player_death"]
+[connection signal="PlayerDeath" from="Player" to="ParallaxBackground" method="_on_player_player_death"]
+[connection signal="timeout" from="AsteroidSpawner" to="." method="_on_asteroid_spawner_timeout"]
+[connection signal="pressed" from="GameOver/RestartButton" to="." method="_on_restart_button_pressed"]

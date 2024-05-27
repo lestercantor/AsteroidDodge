@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://by5hhc0rrqxm"]
+
+[ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_mlane"]
+[ext_resource type="Texture2D" uid="uid://dknmarof4elu0" path="res://assets/sprites/BackgroundPattern.png" id="2_n25o5"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = ExtResource("1_mlane")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(0, 600)
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxLayer"]
+offset_right = 451.0
+offset_bottom = 602.0
+color = Color(0, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture = ExtResource("2_n25o5")
+centered = false
